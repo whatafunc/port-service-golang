@@ -1,0 +1,37 @@
+# k8s/deployment.yaml
+apiVersion: apps/v1  # Deployment API version
+kind: Deployment
+metadata:
+  name: go-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-app
+  template:
+    metadata:
+      labels:
+        app: go-app
+    spec:
+      containers:
+      - name: go-app
+        #image: localhost:5000/port-service:latest
+        #imagePullPolicy: Always
+        image: port-service:latest # if load from docker to kubectl
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1 # Service API version
+kind: Service
+metadata:
+  name: go-app
+spec:
+  selector:
+    app: go-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30080  # NodePort to expose on the host (http://<minikube-ip>:30080)
+  type: NodePort

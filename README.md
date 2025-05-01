@@ -107,3 +107,7 @@ tree
 └── ports.json
 
 15 directories, 29 files
+
+🛠 Happy hacking with Minikube and Kubernetes with this Golang App
+Connect with me on [LinkedIN](https://www.linkedin.com/in/whatafunc/)
+See more on Minikube [overview](https://github.com/whatafunc/port-service-golang/tree/v0.1/docs/README.md)
